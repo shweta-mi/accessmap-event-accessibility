@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AccessMap — Plan more welcoming events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="/static/style.css?v=4">
+</head>
+<body>
+  <header class="top"><a class="brand" href="#"><span class="brand-icon">A</span> access<span>map</span></a><div class="top-right"><span class="topnote"><i></i> DEMO · PRAYAGRAJ</span><a class="admin-shortcut" id="admin-shortcut" href="#admin-panel">Admin review ↗</a></div></header>
+  <main>
+    <section class="hero"><div class="eyebrow">EVENT ACCESS, MADE VISIBLE</div><h1>Make room for<br><em>everyone.</em></h1><p>Explore event venue access features in one place. Compare what matters to your attendees before you book.</p><div class="hero-tags"><span>♿ Step-free access</span><span>↗ Transit nearby</span><span>＋ Accessible restroom</span></div></section>
+    <div class="notice"><span>ⓘ</span><div><b>Check each venue’s verification label</b><br>Demo records are illustrative. Verified records include a source and date; confirm current access details with the venue before attending.</div></div>
+    <section class="workspace"><aside class="sidebar"><div class="side-head"><div><div class="eyebrow">DISCOVER</div><h2>Find a venue</h2></div><span class="count" id="count">—</span></div>
+      <label class="search-label" for="area">Area</label><div class="input-wrap"><span>⌕</span><input id="area" placeholder="Search an area" autocomplete="off"></div>
+      <div class="filter-title">ACCESS FEATURES</div><label class="check"><input type="checkbox" id="step"><span class="tick"></span><span><b>Step-free entrance</b><small>Accessible without stairs</small></span></label>
+      <label class="check"><input type="checkbox" id="restroom"><span class="tick"></span><span><b>Accessible restroom</b><small>On-site accessible facilities</small></span></label>
+      <div class="filter-title transit-title">GETTING THERE</div><div class="transit-card"><span class="transit-icon">↗</span><div><b>Transit access</b><small>See proximity on each venue</small></div></div>
+      <button id="reset" class="reset">Reset filters <span>↺</span></button>
+      <div class="side-footer">Have local access information?<br><button class="text-button" id="open-suggest" type="button">Suggest a venue ↗</button></div>
+    </aside><section class="results"><div class="results-head"><div><div class="eyebrow">VENUE DIRECTORY</div><h2>Spaces to explore</h2><div class="data-summary" id="data-summary">Loading venue records…</div></div><span class="sort-pill">Prayagraj <span>⌄</span></span></div>
+      <div class="map-wrap"><div id="map"></div><span class="map-label">MAP PREVIEW</span></div>
+      <div class="cards" id="cards"></div><div class="empty" id="empty" hidden>No venues match those filters. Try changing your selection.</div>
+      <details class="suggestion-panel" id="suggest-panel"><summary>Suggest a venue or access update <span>Submissions are reviewed before appearing in the directory</span></summary>
+        <form id="suggestion-form">
+          <div class="form-grid">
+            <label>Venue name<input name="name" required minlength="3" maxlength="100" placeholder="e.g. Community Hall"></label>
+            <label>Area or neighbourhood<input name="area" required minlength="2" maxlength="80" placeholder="e.g. Civil Lines"></label>
+            <label>Latitude<input name="latitude" type="number" step="any" min="-90" max="90" required placeholder="25.45"></label>
+            <label>Longitude<input name="longitude" type="number" step="any" min="-180" max="180" required placeholder="81.83"></label>
+            <label>Step-free entrance<select name="step_free"><option value="">Unknown</option><option value="true">Yes</option><option value="false">No</option></select></label>
+            <label>Accessible restroom<select name="accessible_restroom"><option value="">Unknown</option><option value="true">Yes</option><option value="false">No</option></select></label>
+            <label>Transit access<select name="transit"><option>Unknown</option><option>High</option><option>Medium</option><option>Low</option></select></label>
+            <label class="wide">Evidence or source<input name="evidence" required minlength="8" maxlength="500" placeholder="On-site visit, venue accessibility page, or other source"></label>
+            <label class="wide">Access notes<textarea name="details" maxlength="1000" rows="3" placeholder="Add useful details; avoid personal or sensitive information."></textarea></label>
+          </div>
+          <div class="form-actions"><p>Coordinates help place the venue on the map. Suggested records stay private until reviewed.</p><button type="submit">Send for review <span>→</span></button></div>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </details>
+      <details class="admin-panel" id="admin-panel"><summary>Admin review <span>Private moderation tools</span></summary>
+        <div class="admin-content">
+          <p class="admin-intro">Enter the local admin key to review pending venue suggestions. The key stays in this page’s memory and is sent only to this app.</p>
+          <div class="admin-connect"><label for="admin-key">Admin key</label><input id="admin-key" type="password" autocomplete="current-password" placeholder="Enter the key from your local .env"><button id="admin-connect" type="button">Connect</button><button id="admin-disconnect" type="button" hidden>Disconnect</button></div>
+          <div class="admin-status" id="admin-status" role="status" aria-live="polite">Not connected.</div>
+          <div class="pending-list" id="pending-list"></div>
+        </div>
+      </details>
+      <footer>ACCESSMAP <span>·</span> COMMUNITY VENUE ACCESS DIRECTORY PROTOTYPE</footer>
+    </section></section>
+    <section class="bottom-cta"><div><div class="eyebrow">BUILT FOR BETTER GATHERINGS</div><h2>Access is part of<br>the invitation.</h2></div><p>Good event planning starts with clear information. Keep access needs in the conversation from the first venue shortlist.</p></section>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/static/app.js"></script>
+</body></html>

@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.py[cod]
+accessmap.sqlite3
+accessmap.sqlite3-shm
+accessmap.sqlite3-wal
+.env
